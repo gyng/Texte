@@ -1,0 +1,54 @@
+html {
+    height: 100%;
+}
+
+body {
+    font-size: 22px;
+    height: 100%;
+    background-color: #F5F5F5;
+}
+
+b {
+    font-weight: 700;
+}
+
+i {
+    font-style: italic;
+}
+
+::selection {
+    background: #900;
+    color: #fff;
+}
+
+::-moz-selection{
+    background: #900;
+    color: #fff;
+}
+
+.editor {
+    display: flex;
+    min-height: 100%
+}
+
+.document {
+    flex: 1;
+    padding: 50px 0 0 0;
+    width: 100%;
+    min-height: 100%;
+    font-family: 'Vollkorn', 'Georgia', serif;
+    line-height: 200%;
+    color: #333333;
+    -moz-font-feature-settings:"liga=1, dlig=1";
+    -moz-font-feature-settings:"liga", "dlig";
+    -ms-font-feature-settings:"liga", "dlig";
+    -o-font-feature-settings:"liga", "dlig";
+    -webkit-font-feature-settings:"liga", "dlig";
+    font-feature-settings:"liga", "dlig";
+    word-wrap: break-word;
+}
+
+[contentEditable=true]:focus {
+    outline: none;
+    /*outline-color: #7B68EE;*/
+}
