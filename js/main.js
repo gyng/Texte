@@ -3,6 +3,7 @@
 
     $(document).ready(function (e) {
         new Editor($('#document'));
+        $('#document').focus();
     });
 
     function Editor(doc) {
