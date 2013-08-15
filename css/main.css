@@ -5,7 +5,6 @@ html {
 body {
     font-size: 22px;
     height: 100%;
-    background-color: #F5F5F5;
 }
 
 b {
@@ -21,7 +20,7 @@ i {
     color: #fff;
 }
 
-::-moz-selection{
+::-moz-selection {
     background: #900;
     color: #fff;
 }
@@ -38,6 +37,7 @@ i {
     min-height: 100%;
     font-family: 'Vollkorn', 'Georgia', serif;
     line-height: 200%;
+    outline: none;
     color: #333333;
     -moz-font-feature-settings:"liga=1, dlig=1";
     -moz-font-feature-settings:"liga", "dlig";
@@ -50,5 +50,4 @@ i {
 
 [contentEditable=true]:focus {
     outline: none;
-    /*outline-color: #7B68EE;*/
 }
