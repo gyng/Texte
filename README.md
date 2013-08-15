@@ -1,11 +1,21 @@
 # Texte
 
-A minimal HTML rich text editor, with nice things such as ligatures, keyboard shortcuts, and export to HTML included. Uses browser spellcheck if available.
+A minimal HTML rich text editor, with nice things such as persistent storage, ligatures, keyboard shortcuts, and export to HTML included.
 
 ## Installation
 
 1. Clone or download this repo.
 2. Open `index.html` in a modern web browser.
+
+## Features
+
+* HTML5 persistent storage
+* Export to HTML
+* Ligatures via CSS
+* &#8776;80 characters per line
+* Responsive layout via Skeleton
+
+And everything your browser has (fullscreen, spellcheck, print).
 
 ## Shortcuts
 

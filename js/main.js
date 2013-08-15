@@ -2,17 +2,19 @@
     'use strict';
 
     $(document).ready(function (e) {
-        new Editor($('#document'));
+        new Editor($('#document'), 'texte');
         $('#document').focus();
     });
 
-    function Editor(doc) {
+    function Editor(doc, storageKey) {
         this.down = [];
         this.doc = doc;
-        this.setBindings();
+        this.bindKeyboardShortcuts();
+        this.bindPersistentStorage(storageKey);
+        this.loadPersistentStorage(storageKey);
     }
 
-    Editor.prototype.setBindings = function () {
+    Editor.prototype.bindKeyboardShortcuts = function () {
         // 16: SHIFT, 17: CTRL, 18: ALT, 91: SUPER
         $(document).keydown(function (e) {
             this.down[e.keyCode] = true;
@@ -33,16 +35,25 @@
                 else if (this.down[82]) this.doCommand('redo');                // Z
                 else if (this.down[83]) this.save(this.doc.html());            // S
             }
-
             this.down[e.keyCode] = false;
         }.bind(this));
     };
 
-    Editor.prototype.doCommand = function (command, argument) {
-      document.execCommand(command, false, argument);
+    Editor.prototype.bindPersistentStorage = function (key) {
+        this.doc.bind('input', function () {
+            localStorage[key] = this.doc.html();
+        }.bind(this));
     };
 
-    Editor.prototype.save = function (text) {
-        window.open().document.write(text);
+    Editor.prototype.doCommand = function (command, argument) {
+        document.execCommand(command, false, argument);
+    };
+
+    Editor.prototype.save = function (html) {
+        window.open().document.write(html);
+    };
+
+    Editor.prototype.loadPersistentStorage = function (key) {
+        this.doc.html(localStorage[key]);
     };
 })();
