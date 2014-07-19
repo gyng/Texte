@@ -1,10 +1,11 @@
 (function () {
     'use strict';
 
-    $(document).ready(function (e) {
-        new Editor($('#document'), 'texte');
-        $('#document').focus();
-    });
+    window.onload = function () {
+        var documentEl = document.getElementById('document');
+        new Editor(documentEl, 'texte');
+        documentEl.focus();
+    };
 
     function Editor(doc, storageKey) {
         this.down = [];
@@ -16,11 +17,11 @@
 
     Editor.prototype.bindKeyboardShortcuts = function () {
         // 16: SHIFT, 17: CTRL, 18: ALT, 91: SUPER
-        $(document).keydown(function (e) {
+        document.onkeydown = function (e) {
             this.down[e.keyCode] = true;
-        }.bind(this));
+        }.bind(this);
 
-        $(document).keyup(function (e) {
+        document.onkeyup = function (e) {
             if (this.down[17] && this.down[18]) {
                 if      (this.down[66]) this.doCommand('bold');                // B
                 else if (this.down[73]) this.doCommand('italic');              // I
@@ -36,12 +37,12 @@
                 else if (this.down[83]) this.save(this.doc.html());            // S
             }
             this.down[e.keyCode] = false;
-        }.bind(this));
+        }.bind(this);
     };
 
     Editor.prototype.bindPersistentStorage = function (key) {
-        this.doc.bind('input', function () {
-            localStorage[key] = this.doc.html();
+        this.doc.addEventListener('input', function () {
+            localStorage[key] = this.doc.innerHTML;
         }.bind(this));
     };
 
@@ -54,6 +55,6 @@
     };
 
     Editor.prototype.loadPersistentStorage = function (key) {
-        this.doc.html(localStorage[key]);
+        this.doc.innerHTML = localStorage[key];
     };
 })();
